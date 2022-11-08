@@ -15,7 +15,6 @@ require('./configs/database');
 
 // app.use('/api/auth',authController)
 //  app.use('/api/auth/login',authController)
-console.log("amalya")
  app.use('/api/users',userRouter);
  app.use('/api/items',itemRouter);
 app.listen('8000');
