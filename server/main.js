@@ -2,7 +2,7 @@ const express = require('express');
 const userRouter = require('./routers/userRouter');
 const itemRouter = require('./routers/itemRouter');
 //const authController = require('./controllers/authController');
-var cors = require('cors');
+const cors = require('cors');
 
 //Allows access from react(explorer)
 const app = express();
