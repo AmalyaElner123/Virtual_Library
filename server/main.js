@@ -17,7 +17,7 @@ require('./configs/database');
  app.use('/api/users',userRouter);
  app.use('/api/items',itemRouter);
 app.listen('8000');
-
+console.log("ok")
 
 
 
