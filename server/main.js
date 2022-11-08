@@ -1,4 +1,4 @@
-oconst express = require('express');
+const express = require('express');
 const userRouter = require('./routers/userRouter');
 const itemRouter = require('./routers/itemRouter');
 //const authController = require('./controllers/authController');
@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 require('./configs/database');
-console.log("amalya");
 // app.use('/api/auth',authController)
 //  app.use('/api/auth/login',authController)
  app.use('/api/users',userRouter);
