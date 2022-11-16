@@ -18,7 +18,6 @@ exports.getAllUsers = function()
         })
     })
 }
-
 exports.getUser = function(id)
 {
     return new Promise((resolve, reject) =>
@@ -36,14 +35,36 @@ exports.getUser = function(id)
         })
     })
 }
-
-exports.createUser = function(obj)
+exports.createUser =  async (obj) =>
 {
-    return new Promise((resolve, reject) =>
+    const users = await this.getAllUsers().then(data => {return data},function(err,data)
     {
+      if (err)
+      {
+        reject(err)
+      }
+    
+    })  ;
+    const email = users.find(u => { return u.email === obj.email },function(err,data)
+    {
+      if(err)
+      {
+         reject(err)
+      }
+      else
+      {
+        // resolve(data)
+        resolve("Existing email !")
+      }
+    });
+    if (!email)
+    {
+    
+      return new Promise((resolve, reject) =>
+        {
         let user = new userModel({
             userName    : obj.userName,
-            userPassword: obj.userPassword,
+            userPassword    : obj.userPassword,
             email       : obj.email,
             address     : obj.address,
             phone       : obj.phone,
@@ -62,9 +83,8 @@ exports.createUser = function(obj)
             }
         })
     })
+  }
 }
-
-
 exports.updateUser = function(id,obj)
 {
     return new Promise((resolve, reject) =>
@@ -92,9 +112,6 @@ exports.updateUser = function(id,obj)
 
     })
 }
-
-
-
 exports.deleteUser = function(id)
 {
     return new Promise((resolve, reject) =>
@@ -114,27 +131,28 @@ exports.deleteUser = function(id)
 
     })
 }
-
-exports.login = function(username,password)
+exports.login = function(userName,userPassword)
 {
     return new Promise(async(resolve,reject)=>
         {
-     var users = await getAllUsers().then(data=>{return data});
+     var users = await this.getAllUsers().then(data=>{return data});
      
      const accessTokenSecret = 'somerandomaccesstoken';
-     const user = users.find(u => { return u.username === username && u.password === password});
+     const user = users.find(u => { return u.userName === userName && u.userPassword === userPassword});
 
      if(user) 
      {
         //generate an access token 
-        const accessToken = jwt.sign({username: user.username, password: user.password},accessTokenSecret);
+        const accessToken = jwt.sign({userName: user.userName, userPassword: user.userPassword},accessTokenSecret);
 
-        resolve ({accessToken});
-
+        resolve ({token : accessToken});
+        // resolve.status(200).send({ token: accessToken});
      }
      else 
      {
-        reject.sendStatus(401);
+        // reject.sendStatus(401);
+        reject("email or password incorect!");
+        return;
      }
     })
 }

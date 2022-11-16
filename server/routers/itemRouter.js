@@ -30,7 +30,7 @@ router.route('/')
         let obj = req.body;
         itemBL.createItem(obj).then(data =>
             {
-                console.log(resp.json(data))
+                // console.log(resp.json(data))
                 return resp.json(data)
             })
     })
