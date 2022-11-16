@@ -110,12 +110,9 @@ router.route('/:id')
     router.route('/login')
     .post(function(req, resp)
     {
-        const {userName, userPassword} = req.body;
-        userBL.login(userName, userPassword).then(data=>
+        const {email, userPassword} = req.body;
+        userBL.login(email, userPassword).then(data=>
             {
-                
-                
-                // return resp.json(data)
                 return resp.json(data)
             })
             .catch(err =>resp.status(400).send(err));

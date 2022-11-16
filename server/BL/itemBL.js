@@ -49,7 +49,8 @@ exports.createItem = function(obj)
             status   : obj.status ,
             rate     : obj.rate ,
             borrowsNum : obj.borrowsNum ,
-            openText   : obj.openText
+            openText   : obj.openText,
+            img        : obj.img
         });
         
         item.save(function(err)
@@ -82,7 +83,9 @@ exports.updateItem = function(id,obj)
                 status   : obj.status ,
                 rate     : obj.rate ,
                 borrowsNum : obj.borrowsNum ,
-                openText   : obj.openText
+                openText   : obj.openText ,
+                img        : obj.img
+                
             }, function(err)
             {
                 if(err)

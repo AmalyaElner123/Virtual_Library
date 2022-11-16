@@ -131,28 +131,30 @@ exports.deleteUser = function(id)
 
     })
 }
-exports.login = function(userName,userPassword)
+exports.login = function(email,userPassword)
 {
     return new Promise(async(resolve,reject)=>
-        {
+    {
      var users = await this.getAllUsers().then(data=>{return data});
      
      const accessTokenSecret = 'somerandomaccesstoken';
-     const user = users.find(u => { return u.userName === userName && u.userPassword === userPassword});
+     const user = users.find(u => { return u.email === email && u.userPassword === userPassword});
 
      if(user) 
      {
         //generate an access token 
-        const accessToken = jwt.sign({userName: user.userName, userPassword: user.userPassword},accessTokenSecret);
+        const accessToken = jwt.sign({email: user.eamil, userPassword: user.userPassword},accessTokenSecret);
 
         resolve ({token : accessToken});
         // resolve.status(200).send({ token: accessToken});
      }
      else 
      {
-        // reject.sendStatus(401);
-        reject("email or password incorect!");
-        return;
+        
+        // reject("email or password incorect!");
+        // return;
+
+        resolve ("email or password incorect!");
      }
     })
 }

@@ -7,11 +7,18 @@ axios.interceptors.request.use(req =>
     
     return req;
 })
+
  const createUser= (url,obj)=>
 {
        
     return axios.post(url,obj).then(res=>res.data);
 }
+
+const createItem = (url,obj) =>
+{
+    return axios.post(url,obj).then(res=>res.data);
+}
+
 const getAllItems = (url) =>
 {
     //  const token = sessionStorage.getItem('token')
@@ -20,6 +27,7 @@ const getAllItems = (url) =>
        
     // return axios.get("localhost:8000/api/items");
 }
+
 const getAllUsers = (url) =>
 {
        
@@ -42,4 +50,4 @@ const getAllUsers = (url) =>
     
 
 
-export default {getAllItems,createUser,getAllUsers};
+export default {getAllItems,createUser,getAllUsers,createItem};

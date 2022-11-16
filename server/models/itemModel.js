@@ -9,7 +9,8 @@ let itemSchema = new mongoose.Schema({
     status   : Boolean ,
     rate     : Number ,
     borrowsNum : Number ,
-    openText   : String
+    openText   : String,
+    img        : String
 })
 let itemModel = mongoose.model('items',itemSchema)
 

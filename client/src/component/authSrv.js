@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const login = (userName,userPassword) =>
+const login = (email,userPassword) =>
 {
-    console.log("userName");
-    console.log(userName);
+    console.log("email");
+    console.log(email);
     console.log("userPassword:")
     console.log(userPassword)
    
-    return axios.post("http://localhost:8000/api/users/login", {userName, userPassword})
+    return axios.post("http://localhost:8000/api/users/login", {email, userPassword})
     // return axios.post("//localhost:8000/api/users/login", {username,password})
 }
 

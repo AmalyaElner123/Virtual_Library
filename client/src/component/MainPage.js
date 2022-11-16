@@ -4,6 +4,7 @@ import { BrowserRouter, Link ,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
 import Register from './Register';
+import AddItem from './AddItem';
 
 function MainPage() {
     return (
@@ -14,12 +15,14 @@ function MainPage() {
          <Link to="/"> Login </Link>
          <Link to="/Register"> Register </Link>
          <Link to="/Items"> Items </Link>
+         <Link to="/AddItem"> Add Item </Link>
          </nav>
              
         <Routes>
          <Route exact path="/" element={<Login/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/Items" element={<Items/>} ></Route>
+         <Route exact path="/AddItem" element={<AddItem/>} ></Route>
         </Routes>
         </BrowserRouter>
          
