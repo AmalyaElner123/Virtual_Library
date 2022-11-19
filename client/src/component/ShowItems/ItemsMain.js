@@ -19,6 +19,7 @@ import { Slider } from 'primereact/slider';
 import  './TrigerButton/DataTableDemo.css'
 import '../../index.css'
 import utils from '../utils'
+import CustomerService from './Sortable/SortService'
 import Container from '../ShowItems/TrigerButton/Container'
 
 
@@ -37,16 +38,17 @@ export const DataTableDemo = () => {
     const actionBodyTemplate = (data) => {
         return <Container type="button" icon="pi pi-cog" data={data}></Container>
     }
-
+    
     return (
          <DataTable value={items}>
-             <Column field="idItem" header="קוד"></Column>
-             <Column field="name" header="שם"></Column>
-             <Column field="category" header="קטגוריה"></Column>
-             <Column field="status" header="האם מושאל"></Column>
-             <Column field="rate" header="דירוג"></Column>
-             <Column field="openText" header="תאור המוצר"></Column>
-             <Column field="borrowsNum" header="מספר השאלות"></Column>
+             <Column field="idItem" header="קוד" sortable></Column>
+             <Column field="name" header="שם" sortable></Column>
+             <Column field="category" header="קטגוריה" sortable></Column>
+             <Column field="status" header="האם מושאל" sortable></Column>
+             <Column field="rate" header="דירוג" sortable></Column>
+             <Column field="openText" header="תאור המוצר" sortable></Column>
+             <Column field="borrowsNum" header="מספר השאלות" sortable></Column>
+             <Column field="uploadDate" header=" תאריך העלאה" sortable></Column>
              <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items)}></Column>
                         {/* <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items.map(item =>{
               return item.idItem===??????;
