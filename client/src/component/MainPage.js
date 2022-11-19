@@ -5,6 +5,7 @@ import Login from './Login';
 import Items from './Items';
 import Register from './Register';
 import AddItem from './AddItem';
+import ShowItems from './ShowItems/ItemsMain'
 
 function MainPage() {
     return (
@@ -16,6 +17,7 @@ function MainPage() {
          <Link to="/Register"> Register </Link>
          <Link to="/Items"> Items </Link>
          <Link to="/AddItem"> Add Item </Link>
+         <Link to="/ShowItems"> Show Items </Link>
          </nav>
              
         <Routes>
@@ -23,6 +25,7 @@ function MainPage() {
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/Items" element={<Items/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
+         <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
         </Routes>
         </BrowserRouter>
          
