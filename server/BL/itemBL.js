@@ -50,6 +50,7 @@ exports.createItem = function(obj)
             rate     : obj.rate ,
             borrowsNum : obj.borrowsNum ,
             openText   : obj.openText,
+            uploadDate : obj.uploadDate,
             img        : obj.img
         });
         
@@ -84,6 +85,7 @@ exports.updateItem = function(id,obj)
                 rate     : obj.rate ,
                 borrowsNum : obj.borrowsNum ,
                 openText   : obj.openText ,
+                uploadDate : obj.uploadDate,
                 img        : obj.img
                 
             }, function(err)
