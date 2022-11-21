@@ -23,15 +23,59 @@ import CustomerService from './Sortable/SortService'
 import Container from '../ShowItems/TrigerButton/Container'
 
 
-export const DataTableDemo = () => {
+export const ItemsMain = () => {
 
     const [items, setItems] = useState([])
-
-   
+    const [itemsForSort, setitemsForSort] = useState([])
+    const [nameFilter,setNameFilter]= useState();
+    const [openTextFilter,setOpenTextFilter]= useState();
+    const [rateFilter,setRateFilter]= useState(0);
+    const [statusFilter,setStatusFilter]= useState(false);
+    
+   //var categoryFilter;
+   const setStatusFilterF =()=>{setStatusFilter(!statusFilter)}
         const getData = async()=>
         {
         var  res1 = await utils.getAllItems("http://localhost:8000/api/items");
         setItems(res1);
+        setitemsForSort(res1);
+        }
+        
+        const getNameFilter= ()=>
+        {
+           const data=itemsForSort
+           .filter(function(d) {if (d.name===nameFilter.nameFilter  ) {
+            console.log(d.name);
+             return d;}
+             else (console.log("hhhh"))});
+            setItems(data);
+        }
+        const getOpenTextFilter= ()=>
+        {
+           const data=itemsForSort
+           .filter(function(d) {if (d.openText.includes(openTextFilter.openTextFilter)  ) {
+            console.log(d.openText);
+             return d;}
+             else (console.log("hhhh"))});
+            setItems(data);
+        }
+        const getRateFilter= ()=>
+        {
+           const data=itemsForSort
+           .filter(function(d) {if (d.rate===Number(rateFilter.rateFilter)  ) {
+            console.log(d.rate);
+             return d;}
+             else (console.log("hhhh"))});
+            setItems(data);
+        }
+        const getStatusFilter= ()=>
+        {
+           const data=itemsForSort
+           .filter(function(d) {if (d.status===statusFilter  ) {
+            console.log(d.status);
+             return d;}
+             else (console.log("hhhh"))});
+            setItems(data);
         }
        useEffect( () =>  { getData();  } ,[])
 
@@ -40,6 +84,17 @@ export const DataTableDemo = () => {
     }
     
     return (
+        <div>
+            שם :<input type="text" onChange={e => setNameFilter({...nameFilter, nameFilter : e.target.value}) }></input>
+            <button onClick={getNameFilter}>===</button><br/>
+            דירוג :<input type="number" onChange={e => setRateFilter({...rateFilter, rateFilter : e.target.value}) }></input>
+            <button onClick={getRateFilter}>===</button><br/>
+            מכיל :<input type="text" onChange={e => setOpenTextFilter({...openTextFilter, openTextFilter : e.target.value}) }></input>
+            <button onClick={getOpenTextFilter}>===</button><br/>
+            לא מושאל :<input type="checkbox"  onChange={setStatusFilterF }></input>
+            <button onClick={getStatusFilter}>===</button>
+
+            {/* קטגוריה :<input type="text" onChange={()=>setCategoryFilterF()}></input> */}
          <DataTable value={items}>
              <Column field="idItem" header="קוד" sortable></Column>
              <Column field="name" header="שם" sortable></Column>
@@ -50,14 +105,14 @@ export const DataTableDemo = () => {
              <Column field="borrowsNum" header="מספר השאלות" sortable></Column>
              <Column field="uploadDate" header=" תאריך העלאה" sortable></Column>
              <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items)}></Column>
-                        {/* <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items.map(item =>{
-              return item.idItem===??????;
+             {/* <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items.map(item =>{
+              return item.idItem=== ??????;
             }))}></Column> */}
         </DataTable>
-         
+         </div>
     );
 
-}; export default DataTableDemo;
+}; export default ItemsMain;
  
 
 // const DataTableDemo = () => {
