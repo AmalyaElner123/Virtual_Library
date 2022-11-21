@@ -13,11 +13,11 @@ function MainPage() {
             <h1>Welcome to Virtual Library web site</h1>
         <BrowserRouter>
          <nav>
-         <Link to="/"> Login </Link>
-         <Link to="/Register"> Register </Link>
-         <Link to="/Items"> Items </Link>
-         <Link to="/AddItem"> Add Item </Link>
-         <Link to="/ShowItems"> Show Items </Link>
+         <Link className='link' to="/"> Login </Link>
+         <Link className='link' to="/Register"> Register </Link>
+         <Link className='link' to="/Items"> Items </Link>
+         <Link className='link' to="/AddItem"> Add Item </Link>
+         <Link className='link' to="/ShowItems"> Show Items </Link>
          </nav>
              
         <Routes>
