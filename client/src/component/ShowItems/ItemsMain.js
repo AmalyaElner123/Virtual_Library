@@ -21,6 +21,7 @@ import '../../index.css'
 import utils from '../utils'
 import CustomerService from './Sortable/SortService'
 import Container from '../ShowItems/TrigerButton/Container'
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 
 export const ItemsMain = () => {
@@ -104,7 +105,7 @@ export const ItemsMain = () => {
              <Column field="openText" header="תאור המוצר" sortable></Column>
              <Column field="borrowsNum" header="מספר השאלות" sortable></Column>
              <Column field="uploadDate" header=" תאריך העלאה" sortable></Column>
-             <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items)}></Column>
+             <Column field="details" header="פרטי המוצר" body={(data,props)=>actionBodyTemplate(items[props.rowIndex])} ></Column>
              {/* <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items.map(item =>{
               return item.idItem=== ??????;
             }))}></Column> */}
