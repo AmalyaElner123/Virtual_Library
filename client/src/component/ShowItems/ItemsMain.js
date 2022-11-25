@@ -5,6 +5,7 @@ import 'primeflex/primeflex.css';
 import ReactDOM from 'react-dom';
 
 import React, { useState, useEffect } from 'react';
+//import for primeReact website-design
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -19,28 +20,37 @@ import { Slider } from 'primereact/slider';
 import  './TrigerButton/DataTableDemo.css'
 import '../../index.css'
 import utils from '../utils'
-import CustomerService from './Sortable/SortService'
 import Container from '../ShowItems/TrigerButton/Container'
 import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+// import for mui website- design
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Buttons from '@mui/material/Button';
+import {Checkbox,TextField} from '@mui/material';
+import SortService from './sortService';
 
 
 export const ItemsMain = () => {
 
     const [items, setItems] = useState([])
+    const [selectedProducts, setSelectedProducts] = useState([])
     const [itemsForSort, setitemsForSort] = useState([])
     const [nameFilter,setNameFilter]= useState();
     const [openTextFilter,setOpenTextFilter]= useState();
     const [rateFilter,setRateFilter]= useState(0);
     const [statusFilter,setStatusFilter]= useState(false);
-    
-   //var categoryFilter;
-   const setStatusFilterF =()=>{setStatusFilter(!statusFilter)}
-        const getData = async()=>
+    const getData = async()=>
         {
         var  res1 = await utils.getAllItems("http://localhost:8000/api/items");
         setItems(res1);
         setitemsForSort(res1);
         }
+        useEffect( () =>  { getData();  } ,[])
+
+        const setStatusFilterF =()=>{setStatusFilter(!statusFilter)}
+   
         
         const getNameFilter= ()=>
         {
@@ -78,27 +88,29 @@ export const ItemsMain = () => {
              else (console.log("hhhh"))});
             setItems(data);
         }
-       useEffect( () =>  { getData();  } ,[])
 
     const actionBodyTemplate = (data) => {
         return <Container type="button" icon="pi pi-cog" data={data}></Container>
     }
-    
+    const filters = {
+        'name': { value: null, matchMode: FilterMatchMode.STARTS_WITH }
+    }
     return (
-        <div>
-            שם :<input type="text" onChange={e => setNameFilter({...nameFilter, nameFilter : e.target.value}) }></input>
-            <button onClick={getNameFilter}>===</button><br/>
-            דירוג :<input type="number" onChange={e => setRateFilter({...rateFilter, rateFilter : e.target.value}) }></input>
-            <button onClick={getRateFilter}>===</button><br/>
-            מכיל :<input type="text" onChange={e => setOpenTextFilter({...openTextFilter, openTextFilter : e.target.value}) }></input>
-            <button onClick={getOpenTextFilter}>===</button><br/>
-            לא מושאל :<input type="checkbox"  onChange={setStatusFilterF }></input>
-            <button onClick={getStatusFilter}>===</button>
-
+        <div >
+            <br/>
+            <TextField style={{direction:"rtl"}} type="text" label="שם מוצר" size="small" onChange={e => setNameFilter({...nameFilter, nameFilter : e.target.value}) }></TextField>
+            <Buttons variant="outlined" onClick={getNameFilter}>===</Buttons>
+            <TextField style={{direction:"rtl"}} type="number" label="דירוג" size="small" onChange={e => setRateFilter({...rateFilter, rateFilter : e.target.value}) }></TextField>
+            <Buttons variant="outlined" onClick={getRateFilter}>===</Buttons>
+            <TextField type="text" label="תאור" size="small" onChange={e => setOpenTextFilter({...openTextFilter, openTextFilter : e.target.value}) }></TextField>
+            <Buttons variant="outlined" onClick={getOpenTextFilter}>===</Buttons>
+            מושאל :<Checkbox  onChange={setStatusFilterF }></Checkbox>
+            <Buttons variant="outlined" onClick={getStatusFilter}>===</Buttons>
+<div >
             {/* קטגוריה :<input type="text" onChange={()=>setCategoryFilterF()}></input> */}
-         <DataTable value={items}>
+         <DataTable value={items} selectionMode="multiple" filters={filters} >
              <Column field="idItem" header="קוד" sortable></Column>
-             <Column field="name" header="שם" sortable></Column>
+             <Column field="name" header="שם" sortable filter></Column>
              <Column field="category" header="קטגוריה" sortable></Column>
              <Column field="status" header="האם מושאל" sortable></Column>
              <Column field="rate" header="דירוג" sortable></Column>
@@ -109,7 +121,9 @@ export const ItemsMain = () => {
              {/* <Column field="details" header="פרטי המוצר" body={actionBodyTemplate(items.map(item =>{
               return item.idItem=== ??????;
             }))}></Column> */}
+        <SortService></SortService>
         </DataTable>
+        </div>
          </div>
     );
 

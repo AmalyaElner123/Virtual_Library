@@ -3,7 +3,9 @@ import { useState } from 'react';
 import authUtils from './authSrv';
 
 function Login() {
-        const [login, setLogin] = useState({email : '',userPassword : ''})
+        
+    const [answer,setAnswer]=useState();
+    const [login, setLogin] = useState({email : '',userPassword : ''})
     //const history = useHistory()
     const loginFunc = () =>
     {
@@ -11,7 +13,7 @@ function Login() {
         console.log("login:")
         console.log(login.email)
         console.log(login.userPassword)
-        authUtils.login(login.email, login.userPassword)
+       const a= authUtils.login(login.email, login.userPassword)
          .then(resp =>
             {
                 console.log("resp");
@@ -20,6 +22,9 @@ function Login() {
                 authUtils.saveToken(resp.data.token);
                 //history.push("/products")
             })
+            console.log("a")
+            console.log(a.PromiseState)
+            setAnswer(a.PromiseState);
    }
     return (
         <div className="App">
@@ -27,6 +32,7 @@ function Login() {
             Email         : <input type="text" onChange={e => setLogin({...login, email: e.target.value}) } /><br/>
             User Password : <input type="text" onChange={e => setLogin({...login, userPassword : e.target.value}) } /><br/>
             <input type="button" value="Login" onClick={loginFunc} />
+            {answer}
         </div>
     );
 }
