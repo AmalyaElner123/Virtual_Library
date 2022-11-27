@@ -8,6 +8,7 @@ import AddItem from './AddItem';
 import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
+import PrivateArea from './PrivateArea/PrivateArea';
 
 function MainPage() {
     return (
@@ -16,12 +17,14 @@ function MainPage() {
         <BrowserRouter>
          <nav className="link-nav">
          <Link className='link' to="/"> משתמש רשום </Link>
+         <Link className='link' to="/PrivateArea"> אזור אישי</Link>
          <Link className='link' to="/Register"> משתמש חדש </Link>
          <Link className='link' to="/AddItem"> הוספת מוצר </Link>
          <Link className='link' to="/ShowItems"> רשימת מוצרים </Link>
          </nav>
              
         <Routes>
+        <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
          <Route exact path="/" element={<Login/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
