@@ -6,7 +6,10 @@ axios.interceptors.request.use(req =>
     // req.headers =  {
     //     'Access-Control-Allow-Origin': '*',
     //     };
+<<<<<<< HEAD
    
+=======
+>>>>>>> 817f4e390e2f658616449f41473a8f8477d980e8
     req.headers = {'token' : authUtils.getToken()};
     
     return req;
