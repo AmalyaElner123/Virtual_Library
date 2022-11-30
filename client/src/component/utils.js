@@ -3,6 +3,10 @@ import authUtils from './authSrv'
 
 axios.interceptors.request.use(req =>
 {
+    // req.headers =  {
+    //     'Access-Control-Allow-Origin': '*',
+    //     };
+   
     req.headers = {'token' : authUtils.getToken()};
     
     return req;

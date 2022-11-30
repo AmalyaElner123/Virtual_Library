@@ -4,8 +4,8 @@ import { BrowserRouter, Link ,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
 import Register from './Register';
-import AddItem from './AddItem';
-import ShowItems from './ShowItems/ItemsMain'
+import AddItem from './AddItem/AddItemMain';
+import ShowItems from './ShowItems/ItemsMain';
 
 function MainPage() {
     return (

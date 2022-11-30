@@ -8,7 +8,29 @@ const cors = require('cors');
 const app = express();
 
 
+
 app.use(cors());
+app.use(cors({ credentials: true }))
+
+//try
+// var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+// var builder = WebApplication.CreateBuilder(args);
+// builder.Services.AddCors(options =>
+//     {
+       
+//     options.AddDefaultPolicy(
+//         policy =>
+//         {
+//             policy.WithOrigins("http://localhost:19008")
+//                 .AllowAnyHeader()
+//                 .AllowAnyMethod();
+//         });
+// });
+// var app1 = builder.Build();
+// app1.UseCors();
+//try
+
 app.use(express.json());
 
 require('./configs/database');
