@@ -29,6 +29,10 @@
 .datatable-doc-demo .p-datatable.p-datatable-customers .p-dropdown-label:not(.p-placeholder) {
     text-transform: uppercase;
 }
+.itemsMain{
+  width: 100%;
+  max-width: 100%
+}
 body {
     margin: 0;
     padding: 0;

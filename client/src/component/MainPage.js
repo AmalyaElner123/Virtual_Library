@@ -1,29 +1,37 @@
 // import logo from './logo.svg';
 import '../App.css';
-import { BrowserRouter, Link ,Route, Routes } from 'react-router-dom';
+import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
 import Register from './Register';
+<<<<<<< HEAD
 import AddItem from './AddItem/AddItemMain';
 import ShowItems from './ShowItems/ItemsMain';
+=======
+import AddItem from './AddItem';
+import ShowItems from './ShowItems/ItemsMain'
+import {RouterLink,Router} from '@mui/material';
+import { StaticRouter } from 'react-router-dom/server';
+import PrivateArea from './PrivateArea/PrivateArea';
+>>>>>>> f71fe7879e6ba7f7820eb1250248fb8c67f633f8
 
 function MainPage() {
     return (
-        <div className="App">
-            <h1>Welcome to Virtual Library web site</h1>
+        <div className="link-nav">
+            <h1 >Welcome to Virtual Library web site</h1>
         <BrowserRouter>
-         <nav>
-         <Link to="/"> Login </Link>
-         <Link to="/Register"> Register </Link>
-         <Link to="/Items"> Items </Link>
-         <Link to="/AddItem"> Add Item </Link>
-         <Link to="/ShowItems"> Show Items </Link>
+         <nav className="link-nav">
+         <Link className='link' to="/"> משתמש רשום </Link>
+         <Link className='link' to="/PrivateArea"> אזור אישי</Link>
+         <Link className='link' to="/Register"> משתמש חדש </Link>
+         <Link className='link' to="/AddItem"> הוספת מוצר </Link>
+         <Link className='link' to="/ShowItems"> רשימת מוצרים </Link>
          </nav>
              
         <Routes>
+        <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
          <Route exact path="/" element={<Login/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
-         <Route exact path="/Items" element={<Items/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
         </Routes>

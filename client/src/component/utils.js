@@ -12,7 +12,7 @@ axios.interceptors.request.use(req =>
     return req;
 })
 
- const createUser= (url,obj)=>
+ const createUser = (url,obj)=>
 {
        
     return axios.post(url,obj).then(res=>res.data);

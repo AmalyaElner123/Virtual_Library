@@ -6,7 +6,7 @@ import MainPage from './component/MainPage';
 function App() {
 
     return (
-        <div className = "App" >
+        <div className ='itemsMain' >
             <MainPage></MainPage>
         </div>
     )

@@ -1,11 +1,29 @@
 .App {
   text-align: center;
   direction: rtl;
+<<<<<<< HEAD
 }
+=======
+  width: 100%  ;
+  max-width: 100%
+>>>>>>> f71fe7879e6ba7f7820eb1250248fb8c67f633f8
 
+}
+.itemsMain{
+  text-align: center;
+  direction: rtl;
+  width: 100%;
+  max-width: 100%
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.css-tctv7l{
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,7 +31,26 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.link-nav
+{
+  background-color: orange;
+width: 100%;
+height: 50px;;
+}
+.link{
+  background-color: orange;
+  border: #282c34;
+  border-style:inherit;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top:  12.5px;;
+  padding-bottom: 12.5px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;;
+float:right;
+text-decoration:none;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
