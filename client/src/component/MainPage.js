@@ -17,7 +17,7 @@ import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
 import PrivateArea from './PrivateArea/PrivateArea';
->>>>>>> f71fe7879e6ba7f7820eb1250248fb8c67f633f8
+
 
 function MainPage() {
     return (
