@@ -4,15 +4,7 @@ import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
 import Register from './Register';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import AddItem from './AddItem/AddItemMain';
-import ShowItems from './ShowItems/ItemsMain';
-=======
-import AddItem from './AddItem';
-=======
-import AddItem from './AddItem/AddItemMain';
->>>>>>> 817f4e390e2f658616449f41473a8f8477d980e8
 import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
