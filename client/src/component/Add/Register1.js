@@ -93,15 +93,18 @@ export const FormikFormDemo = () => {
 
             return errors;
         },
-        onSubmit: async(data) => {
-           
+        // onSubmit: async(data) => {
+            onSubmit: (data) => {
+   
             console.log("data:")
             console.log(data)
-            //setFormData(data);
-            // console.log("setFormData");
-            // console.log(formData)
+            setFormData(data);
+            console.log("setFormData");
+         console.log(formData)
            
-        var res = await utils.createUser("http://localhost:8000/api/users/register",data)
+        // var res = await utils.createUser("http://localhost:8000/api/users/register",data)
+        var res =  utils.createUser("http://localhost:8000/api/users/register",data)
+
         
         console.log("res:")
         console.log(res.value);
