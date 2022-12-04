@@ -2,7 +2,7 @@
 import '../App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import utils from './utils'
+import utils from './service/utils'
 
 function Items() {
 

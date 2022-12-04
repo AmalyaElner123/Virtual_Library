@@ -3,8 +3,10 @@ import '../App.css';
 import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
-import Register from './Register';
-import AddItem from './AddItem/AddItemMain';
+import Register from './Add/Register1';
+// import Register from './Register';
+
+import AddItem from './Add/AddItemMain';
 import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';

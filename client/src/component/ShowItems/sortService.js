@@ -20,7 +20,7 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Slider } from 'primereact/slider';
 import  './TrigerButton/DataTableDemo.css'
 import '../../index.css'
-import utils from '../utils'
+import utils from '../service/utils'
 import Container from '../ShowItems/TrigerButton/Container'
 import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 // import for mui website- design

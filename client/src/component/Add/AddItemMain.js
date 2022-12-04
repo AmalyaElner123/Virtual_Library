@@ -2,7 +2,7 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
-import '../../index.css';
+// import '../../index.css';
 import ReactDOM from 'react-dom';
 
 import React, { useState ,useRef} from 'react';
@@ -18,8 +18,8 @@ import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
 import { MultiSelect } from 'primereact/multiselect';
 //import { CountryService } from '../service/CountryService';
-import './AddNewItem.css';
-import utils from '../utils';
+import './Add.css';
+import utils from '../service/utils';
 import { Toast } from 'primereact/toast';
 import { FileUpload } from 'primereact/fileupload';
 import { ProgressBar } from 'primereact/progressbar';
@@ -52,7 +52,8 @@ export const AddItem= () => {
             name: '',
             category: [''],
             openText:'',
-            img:''
+            img:'',
+            uploadDate:null
         },
         validate: (data) => {
             let errors = {};
@@ -68,15 +69,19 @@ export const AddItem= () => {
             return errors;
         },
         
-        onSubmit:  async (data) => {
+         onSubmit:  async (data) => {
+
         var today = new Date,date1 = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
         console.log("bef_new_item:")
         console.log(data)
+        setItem(data)
         setItem({...item,uploadDate:date1.value})
+
 
         console.log(item)
 
-        //var res = await utils.createItem("http://localhost:8000/api/items",item)
+        var res = await utils.createItem("http://localhost:8000/api/items",item)
+
 
         console.log("add_new_item");
         
@@ -222,7 +227,7 @@ export const AddItem= () => {
                           <Tooltip target=".custom-cancel-btn" content="Clear" position="bottom" />
                           <div className="card">
                             <h5>Advanced</h5>
-                                <FileUpload name="demo[]" url="https://github.com/AmalyaElner123/Virtual_Library/blob/main/Images" onUpload={onUpload} multiple accept="image/*" maxFileSize={1000000} 
+                                <FileUpload name="demo[]" url="https://github.com/AmalyaElner123/Virtual_Library/tree/main/Images" onUpload={onUpload} multiple accept="image/*" maxFileSize={1000000} 
                                                emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} />
                           </div>   
                         </div>   

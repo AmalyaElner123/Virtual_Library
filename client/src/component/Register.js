@@ -1,5 +1,5 @@
 import { useState } from "react";
-import utils from './utils';
+import utils from './service/utils';
 
 function Register() {
 

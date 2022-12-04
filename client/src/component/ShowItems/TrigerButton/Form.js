@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import utils from '../../utils'
+import utils from '../../service/utils'
 import UserDetails from './UserDetails';
 
 export const Form = ({ onSubmit,data }) => {

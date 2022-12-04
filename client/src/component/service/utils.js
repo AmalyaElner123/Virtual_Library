@@ -1,5 +1,5 @@
 import axios, { AxiosHeaders } from 'axios'
-import authUtils from './authSrv'
+import authUtils from '../authSrv'
 
 axios.interceptors.request.use(req =>
 {
@@ -14,7 +14,8 @@ axios.interceptors.request.use(req =>
 
  const createUser = (url,obj)=>
 {
-       
+    console.log("obj")
+    console.log(obj)   
     return axios.post(url,obj).then(res=>res.data);
 }
 
@@ -49,9 +50,6 @@ const getAllUsers = (url) =>
         
     return axios.get(url).then(res=>res.data);
     
-}
-    
-    
-
+} 
 
 export default {getAllItems,createUser,getAllUsers,createItem};
