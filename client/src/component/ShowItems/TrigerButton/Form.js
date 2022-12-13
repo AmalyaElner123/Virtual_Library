@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import utils from '../../service/utils'
+
+import utils from '../../service/utils';
 import UserDetails from './UserDetails';
 
 export const Form = ({ onSubmit,data }) => {
   const [users, setUsers] = useState([])
 
-  const getData = async()=>
+  const getData = async() =>
         {
         var  res1 = await utils.getAllUsers("http://localhost:8000/api/users");
         setUsers(res1);
@@ -15,7 +16,7 @@ export const Form = ({ onSubmit,data }) => {
         console.log(res1);
         }
   
-  useEffect( () =>  { getData();  } ,[]);
+  useEffect( () =>  { getData();  } ,[users]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -24,12 +25,12 @@ export const Form = ({ onSubmit,data }) => {
      <br/>
      <h5>
       {
-users.filter(function(u){if(u.id===data.idOwner){console.log(u.id);return <UserDetails user={u}></UserDetails>;}else{console.log("else"); console.log(data.idOwner)}})      }
+users.map(function(u){if(u._id===data.idOwner){return <UserDetails user={u}></UserDetails>;}else{console.log("else"); console.log(u._id);}})      }
      </h5>
      {/* {
      tasks.filter(function (item) {
                                 return item.userId == props.userId}).map(function (item) {
-                                return <Task title={item.title}></Task>;} */}
+                                return <Task title={item.title}></Task>;})} */}
     </form>
   );
 };
