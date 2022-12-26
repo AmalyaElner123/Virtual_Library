@@ -2,6 +2,9 @@ export const UserDetails = (user) =>
 {
 
     return(
-        <div>נסיון{user.name}</div>
+        <div>
+        <div>{user.user.userName + " "+ user.user.email+ " "+ user.user.phone}</div>
+        
+        </div>
     )
 }; export default UserDetails
