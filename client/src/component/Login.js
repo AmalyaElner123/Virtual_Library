@@ -28,9 +28,9 @@ function Login() {
    }
     return (
         <div className="App">
-            <h3>Login Page</h3>
-            Email         : <input type="text" onChange={e => setLogin({...login, email: e.target.value}) } /><br/>
-            User Password : <input type="text" onChange={e => setLogin({...login, userPassword : e.target.value}) } /><br/>
+            <h3>התחברות</h3>
+            אימייל:<input type="text" onChange={e => setLogin({...login, email: e.target.value}) } /><br/>
+            סיסמה:<input type="text" onChange={e => setLogin({...login, userPassword : e.target.value}) } /><br/>
             <input type="button" value="Login" onClick={loginFunc} />
             {answer}
         </div>

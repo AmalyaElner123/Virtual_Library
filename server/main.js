@@ -3,11 +3,14 @@ const userRouter = require('./routers/userRouter');
 const itemRouter = require('./routers/itemRouter');
 //const authController = require('./controllers/authController');
 const cors = require('cors');
+const bodyParser = require("body-parser");
 
 //Allows access from react(explorer)
 const app = express();
 
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
 
 app.use(cors());
 app.use(cors({ credentials: true }))

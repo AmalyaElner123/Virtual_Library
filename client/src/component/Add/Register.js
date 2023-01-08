@@ -19,6 +19,7 @@ import { classNames } from 'primereact/utils';
 import { CountryService } from '../service/CountryService';
 
 import './Add.css';
+//import { use } from '../../../../server/routers/userRouter';
 
 export const FormikFormDemo = () => {
     const [countries, setCountries] = useState([]);
@@ -26,6 +27,8 @@ export const FormikFormDemo = () => {
 
     const [showMessage, setShowMessage] = useState(false);
     const [formData, setFormData] = useState({});
+    const [user, setUser] = useState(['']);
+
     //const  [user,setUser]=useState({userName:'',userPassword:'',email:'',address:'',phone:''})
 
 
@@ -36,12 +39,10 @@ export const FormikFormDemo = () => {
     useEffect(() => {
      
       countryservice.getCountries().then(data => setCountries(data));
-         setCountries1(countries)  
-         console.log("setCountries")
-         console.log("countries1")
-   
-       console.log(countries1)
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+         //setCountries1(countries)  
+         //console.log("countries")
+         //console.log(countries)
+    }, [countries]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // const getCountriesData = async()=>
     //     {
@@ -93,23 +94,39 @@ export const FormikFormDemo = () => {
 
             return errors;
         },
-        // onSubmit: async(data) => {
-            onSubmit: (data) => {
-   
-            console.log("data:")
-            console.log(data)
-            setFormData(data);
-            console.log("setFormData");
-         console.log(formData)
+        onSubmit: async(data) => {
+           // onSubmit: (data) => {
+            setUser(user.userName=data.userName);
+            setUser(user.userPassword=data.userPassword);
+            setUser(user.email=data.email);
+            setUser(user.address=data.address);
+            setUser(user.phone=data.phone);
+            //setUser(user.accept=data.accept);
+            
+            console.log("user:")
+            console.log(user)
+            //setFormData(data);
+            //setUser(data)
+            //console.log("setFormData");
+            //console.log(formData)
            
-        // var res = await utils.createUser("http://localhost:8000/api/users/register",data)
-        var res =  utils.createUser("http://localhost:8000/api/users/register",data)
+        // try{
+        //     const res = await utils.createUser("http://localhost:8000/api/users/register",user);
+        //     console.log(res)
+        //     const data = await res.data;
+        //     console.log(data)
+        //     //setRegistered(true);
+        //   } catch(e){
+        //     console.log(e)
+        //   }
+        var res = await utils.createUser("http://localhost:8000/api/users/register",user)
+        //var res =  utils.createUser("http://localhost:8000/api/users/register",data)
 
         
-        console.log("res:")
-        console.log(res.value);
+        console.log("res.data:")
+       console.log(res.data);
         
-        if (!res)
+        if (!res.data)
         {
             console.log("Email address already exist")
         }
@@ -125,16 +142,16 @@ export const FormikFormDemo = () => {
     };
 
     const dialogFooter = <div className="flex justify-content-center"><Button label="OK" className="p-button-text" autoFocus onClick={() => setShowMessage(false)} /></div>;
-    const passwordHeader = <h6>Pick a password</h6>;
+    const passwordHeader = <h6>בחר סיסמה</h6>;
     const passwordFooter = (
         <React.Fragment>
             <Divider />
             <p className="mt-2">Suggestions</p>
             <ul className="pl-2 ml-2 mt-0" style={{ lineHeight: '1.5' }}>
-                <li>At least one lowercase</li>
-                <li>At least one uppercase</li>
-                <li>At least one numeric</li>
-                <li>Minimum 8 characters</li>
+                <li>לפחות אות קטנה אחת</li>
+                <li>לפחות אות גדולה אחת</li>
+                <li>לפחות מספר אחד</li>
+                <li>מינימום 8 תווים</li>
             </ul>
         </React.Fragment>
     );
@@ -164,7 +181,7 @@ export const FormikFormDemo = () => {
                         </div>
                         <div className="field">
                             <span className="p-float-label">
-                                <Password id="userPassword" name="userPassword"  value={formik.values.userPassword} onChange={formik.handleChange} toggleMask
+                                <Password dir='ltr' id="userPassword" name="userPassword"  value={formik.values.userPassword} onChange={formik.handleChange} toggleMask
                                     className={classNames({ 'p-invalid': isFormFieldValid('userPassword') })} header={passwordHeader} footer={passwordFooter} />
                                 <label htmlFor="userPassword" className={classNames({ 'p-error': isFormFieldValid('userPassword') })}>סיסמה*</label>
                             </span>

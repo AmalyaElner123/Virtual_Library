@@ -33,7 +33,9 @@ const authenticateJWT = (req, res, next) => {
     }
 }
 router.route('/')
-    .get(authenticateJWT,function(req, resp)
+    // .get(authenticateJWT,function(req, resp)
+    .get(function(req, resp)
+
     // .get(function(req, resp)
     {
         userBL.getAllUsers().then(data =>
