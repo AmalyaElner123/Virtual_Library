@@ -16,7 +16,13 @@ code {
 html {
   font-size: 14px;
 }
-
+.filter{
+  float: right;
+}
+.carousel-demo{
+  position:absolute;
+  top: 75%;
+}
 body {
   background-color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;

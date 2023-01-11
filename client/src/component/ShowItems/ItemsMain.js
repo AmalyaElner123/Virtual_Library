@@ -103,7 +103,7 @@ export const ItemsMain = () => {
 <Grid container direction="row" p={0.5} rowSpacing={1} columnSpacing={{ xs: 1}}>
   <Grid item xs>
     <Itemim>
-       <Grid p={0.5} container direction="column" rowSpacing={1} columnSpacing={{ xs: 1}}> 
+       <Grid p={0.5} container direction="column" className='filter' rowSpacing={1} columnSpacing={{ xs: 1}}> 
           <Grid p={0.5} item xs>
             <Itemim>
             < TextField  style={{direction:"rtl",padding:"5"}} type="text" label="שם מוצר" size="small" onChange={e => setNameFilter({...nameFilter, nameFilter : e.target.value}) }></TextField>
@@ -136,7 +136,7 @@ export const ItemsMain = () => {
     <Itemim>
         <Grid p={0.5}>
             <Itemim>
-    <DataTable value={items} style={{direction:"rtl",width:1000}} className="p-datatable-customers" selectionMode="multiple" filters={filters} rows={10} 
+    <DataTable value={items} style={{direction:"rtl",width:1000}} size="small" className="p-datatable-customers" selectionMode="multiple" filters={filters} rows={10} 
     paginator currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" emptyMessage="מצטערים, לא נמצאו חפצים התואמים לחיפוש"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" rowHover>
              <Column field="idItem" header="קוד" sortable></Column>

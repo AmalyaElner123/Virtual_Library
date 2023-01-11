@@ -15,7 +15,7 @@ import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
 import PrivateArea from './PrivateArea/PrivateArea';
-import CarouselDemo from './CarouselDemo';
+import Carousle from './carousle/carousle';
 
 
 function MainPage() {
@@ -39,8 +39,8 @@ function MainPage() {
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
         </Routes>
         </BrowserRouter>
-         <CarouselDemo></CarouselDemo>
-        </div>
+
+<Carousle></Carousle>        </div>
     );
 }
 export default MainPage;
