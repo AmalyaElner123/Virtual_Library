@@ -16,6 +16,7 @@ import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
 import PrivateArea from './PrivateArea/PrivateArea';
 import Carousle from './carousle/carousle';
+import Users from './Redux/Users'
 
 
 function MainPage() {
@@ -40,7 +41,11 @@ function MainPage() {
         </Routes>
         </BrowserRouter>
 
-<Carousle></Carousle>        </div>
+<Carousle></Carousle>       
+{/* redux - try      */}
+    <Users></Users>
+   
+ </div>
     );
 }
 export default MainPage;
