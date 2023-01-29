@@ -2,17 +2,18 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FetchUsers } from '../Redux/FetchUsers';
+import { FetchItems } from './FetchItems';
 
 const Users = () => {
     // const users = useSelector(state => state.users.users);
     // const loading = useSelector(state => state.users.loading);
-    const users= useSelector(state => state.users);
+    const users= useSelector(state => state.items);
     const loading = useSelector(state => state.loading)
     // console.log("loading:")
     // console.log(loading)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(FetchUsers());
+        dispatch(FetchItems());
     }, []);
     // useEffect(() => {
     //     if (users.length > 0) {
@@ -27,17 +28,17 @@ const Users = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>name</th>
+                        <th>openText</th>
+                        <th>rating</th>
                     </tr>
                 </thead>
                 <tbody>
                     {users.map(user => (
                         <tr key={user._id}>
-                            <td>{user.userName}</td>
-                            <td>{user.email}</td>
-                            <td>{user.userPassword}</td>
+                            <td>{user.name}</td>
+                            <td>{user.openText}</td>
+                            <td>{user.rating}</td>
                         </tr>
                     ))}
                 </tbody>

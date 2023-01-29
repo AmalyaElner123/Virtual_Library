@@ -141,7 +141,7 @@ export const ItemsMain = () => {
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" rowHover>
              <Column field="idItem" header="קוד" sortable></Column>
              <Column field="name" header="שם" sortable filter></Column>
-             <Column field="category" header="קטגוריה" sortable></Column>
+             {/* <Column field="category" header="קטגוריה" sortable></Column> */}
              <Column field="status" header="האם מושאל" sortable></Column>
              <Column field="rate" header="דירוג" sortable></Column>
              <Column field="openText" header="תאור המוצר" sortable></Column>

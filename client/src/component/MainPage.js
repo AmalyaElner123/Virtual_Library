@@ -14,9 +14,10 @@ import AddItem from './Add/AddItemMain';
 import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
 import { StaticRouter } from 'react-router-dom/server';
-import PrivateArea from './PrivateArea/PrivateArea';
+import PrivateArea from './PrivateArea';
 import Carousle from './carousle/carousle';
 import Users from './Redux/Users'
+import PersonalDetails from './personalDetails';
 
 
 function MainPage() {
@@ -34,10 +35,12 @@ function MainPage() {
              
         <Routes>
         <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
-         <Route exact path="/" element={<Login/>} ></Route>
+         <Route exact path="/" element={<PersonalDetails/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
+         <Route exact path="/PersonalDetails" element={<PersonalDetails/>} ></Route>
+
         </Routes>
         </BrowserRouter>
 
