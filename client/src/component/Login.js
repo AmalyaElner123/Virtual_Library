@@ -55,15 +55,17 @@ import './login.css'
 //import PrivateArea from '../PrivateArea/PrivateArea';
 import { useNavigate } from 'react-router-dom';
 import PersonalDetails from './PrivateArea'
+import utils from './service/utils';
 
 function Login() {
     const history =useNavigate();
 
     const [answer,setAnswer]=useState();
+    const [email,setEmail]=useState();
     const [login, setLogin] = useState({email : '',userPassword : ''})
     
     //const history = useHistory()
-    const loginFunc = () =>
+    const loginFunc = async() =>
     {
         
         console.log("login:")
@@ -83,6 +85,7 @@ function Login() {
             setAnswer(a.PromiseState);
             sessionStorage.setItem('userEmail',login.email)
             if(sessionStorage["token"]){
+               
             history("/personalDetails");
             }
 
@@ -102,7 +105,7 @@ function Login() {
                         </div>
                         <div className="field">
                             <span className="p-float-label">
-                                <Password dir='ltr' id="userPassword" name="userPassword"   onChange={e => setLogin({...login, userPassword: e.target.value})} toggleMask
+                                <Password dir='ltr' id="userPassword" name="userPassword"   onChange={e => setLogin({...login, userPassword: e.target.value})} 
                                       />
                                 <label htmlFor="userPassword">סיסמה*</label>
                             </span>

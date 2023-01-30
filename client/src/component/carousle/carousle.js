@@ -8,15 +8,16 @@ function Carousle() {
 
 	const getData = async()=>
 	{
+		console.log("getData")
 	var  res1 = await utils.getAllItems("http://localhost:8000/api/items");
 	setItems(res1);
 	console.log(items);
 	const src=res1.map(function(d) {return d.img});
 	 setsrclist(src);
-	 console.log(srclist)
+	 console.log(srclist[0])
 
 	}
-	useEffect( () =>  { getData();  } ,[items,srclist])
+	useEffect( () =>  {console.log("useEffect"); getData();  } ,[])
 const todo = ()=>
 {
 	console.log(items);

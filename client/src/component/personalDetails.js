@@ -5,6 +5,8 @@ import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import { Password } from 'primereact/password';
 import { Checkbox } from 'primereact/checkbox';
+import { Accordion, AccordionTab } from 'primereact/accordion';
+
 import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
@@ -13,6 +15,7 @@ import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import utils from'./service/utils'
 import Card1 from "./PrivateArea/card/card";
 import Cardd from './PrivateArea/card/card1'
+import CardTable from './PrivateArea/card/card'
 import Table1 from "./PrivateArea/table";
 
 import '@fontsource/roboto/300.css';
@@ -25,30 +28,32 @@ import Itemim from "@mui/material/Grid"
  import { useSelector, useDispatch } from 'react-redux';
 // import { FetchUsers } from '../Redux/FetchUsers';
 import { FetchUsers } from './Redux/FetchUsers';
+import { FetchItems } from './Redux/FetchItems';
+import { useLocation } from "react-router";
+import './login.css'
 
 function PersonalDetails() {
 const [email,setEmail]=useState();//email taht typed
-const [itemsList,setItemsList]=useState([]);//רשימת מוצרים בבעלותי
+const [itemsListOwn,setItemsListOwn]=useState([]);//רשימת מוצרים בבעלותי
 const [itemsListBorrow,setItemsListBorrow]=useState([]);//רשימת מוצרים שהשאלתי
+//const [user,setUser]=useState([{userName:"aaa",email:"12",userPassword:"1234",address:"sdf",phone:"123456789"}]);//משתמש- אובגקט
 const [user,setUser]=useState([]);//משתמש- אובגקט
 const [f,setF]=useState();//משתמש- אובגקט
 const users= useSelector(state => state.users);
-const loading = useSelector(state => state.loading)
+const items= useSelector(state => state.items);
+const loading = useSelector(state => state.loading);
+
     // console.log("loading:")
     // console.log(loading)
 const dispatch = useDispatch();
 
 
     useEffect(() => {
-        dispatch(FetchUsers());
-    }, []);
-
-const getData =async()=>{
-    
-    var  items = await utils.getAllItems("http://localhost:8000/api/items");
-  //  var  users = await utils.getAllUsers("http://localhost:8000/api/users");
-    console.log("email-sessionStorage")
+        console.log("email-sessionStorage")
     console.log(sessionStorage["userEmail"]);
+        dispatch(FetchUsers());
+        dispatch(FetchItems());
+        
     const e =sessionStorage["userEmail"] ;
     setEmail(e);
     const u= users.
@@ -56,44 +61,25 @@ const getData =async()=>{
         {return p;}
     else
         {console.log(p.userName)}})
-setUser(u);
-const i= items.
-filter(function(p){if(p.idOwner===u[0]._id){if(p)return p;}else{console.log(p.idOwner)}})
-setItemsList(i);
-const it= items.
-filter(function(p){if(p.idBorrow===u[0]._id){return p;}else{console.log(p.idBorrow)}})
-setItemsList(it);
+    setUser(u);
+    console.log("user")
+    console.log(user)
+       const i= items.
+       filter(function(p){if(p.idOwner===u[0]._id){if(p)return p;}else{console.log(p.idOwner)}})
+       setItemsListOwn(i);
 
+       const it= items.
+       filter(function(p){if(p.idBorrow===u[0]._id){return p;}else{console.log(p.idBorrow)}})
+       setItemsListBorrow(it);
+    }, []);
 
-console.log("email")
-console.log(e);
-console.log(email);
-console.log("user")
-//console.log(u);
-console.log(user[0].address);
-console.log("userid")
-
-//console.log(u[0]._id);
-console.log(user[0]._id);
-console.log("username")
-
-//console.log(u[0].userName);
-console.log(user[0].userName);
-
-console.log("itemsListOwn")
-//console.log(i);
-console.log(itemsList);
-console.log("itemsListBorrow")
-//console.log(it);
-console.log(itemsListBorrow);
-
-}
 
 
 
 
     return (
-        <div  ><Button onClick={getData}></Button>
+        <div  >
+            {/* <Button onClick={getData}></Button> */}
             <Grid container direction="row" p={0.5} rowSpacing={1} columnSpacing={{ xs: 1}}>
   <Grid item xs>
     <Itemim>
@@ -102,33 +88,33 @@ console.log(itemsListBorrow);
                     <h5 className="text-center">עדכון פרטים אישיים</h5>
                         <div className="field">
                             <span className="p-float-label">
-                                <InputText id="userName" name="userName"  value={user.userName} onChange={setEmail}  />
+                                <InputText id="userName" name="userName"  value={user[0]? user[0].userName: " "} onChange={setEmail}  />
                                 <label htmlFor="userName" >שם*</label>
                             </span>
                         </div>
                         <div className="field">
                             <span className="p-float-label">
-                                <Password dir='ltr' id="userPassword" name="userPassword"  value={user.userPassword} onChange={setEmail} />
+                                <InputText dir='ltr' id="userPassword" name="userPassword"  value={user[0]? user[0].userPassword:user[0].userPassword=""} onChange={setEmail} />
                                 <label htmlFor="userPassword">סיסמה*</label>
                             </span>
                         </div>
                         <div className="field">
                             <span className="p-float-label p-input-icon-right">
                                 <i className="pi pi-envelope" />
-                                <InputText id="email" name="email"  value={user.email} onChange={setEmail}  />
+                                <InputText id="email" name="email"  value={user[0]? user[0].email:user[0].email=""} onChange={setEmail}  />
                                 <label htmlFor="email">Email*</label>
                             </span>
                         </div>
                        
                         <div className="field">
                             <span className="p-float-label">
-                                <InputText id="address" name="address"  value={user.address} onChange={setEmail}  />
+                                <InputText id="address" name="address"  value={user[0]? user[0].address:user[0].address=""} onChange={setEmail}  />
                                 <label htmlFor="address">ערים</label>
                             </span>
                         </div>
                          <div className="field">
                             <span className="p-float-label">
-                                <InputText id="phone" name="phone"  value={user.phone} onChange={setEmail}  />
+                                <InputText id="phone" name="phone"  value={user[0]? user[0].phone:user[0].phone=""} onChange={setEmail}  />
                                 <label htmlFor="phone" >טלפון*</label>
                             </span>
                         </div>
@@ -140,9 +126,15 @@ console.log(itemsListBorrow);
         </Grid>
         <Grid>
         <Itemim item xs>
-        <div>
-            <Cardd list={itemsList}></Cardd>
-            <Cardd list={itemsList}></Cardd>
+        <div >
+        <Accordion className="accordion">
+                <AccordionTab header="מוצרים בבעלותי" >
+            <CardTable list={itemsListOwn}></CardTable>
+            </AccordionTab>
+                <AccordionTab header="מוצרים בהשאלתי">
+            <CardTable list={itemsListBorrow}></CardTable>
+            </AccordionTab>
+            </Accordion>
            
             {/* <Table1 ></Table1> */}
             {/* <Table1 list={itemsListBorrow} list2={itemsListOwn}></Table1> */}

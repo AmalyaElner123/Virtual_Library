@@ -1,49 +1,43 @@
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import 'primereact/resources/primereact.css';
-import 'primeflex/primeflex.css';
-import ReactDOM from 'react-dom';
+import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 
 import React, { useState, useEffect } from 'react';
-import { OrderList } from 'primereact/orderlist';
+import { Button } from 'primereact/button';
+import { Rating } from 'primereact/rating';
+import { DataScroller } from 'primereact/datascroller';
 import './card.css';
 
 
-const Card1 = (data) => {
+  function CardTable(data1) {
     const [products, setProducts] = useState([]);
-    useEffect(() => {
-         setProducts(data)
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
     
-    const itemTemplate = (item) => {
+
+    useEffect(() => {
+setProducts(data1.list);console.log("card- prime");  console.log(data1.list);console.log(products)  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const itemTemplate = (data) => {
         return (
+            
             <div className="product-item">
-                <div className="image-container">
-                    <img src={item.image} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={item.name} />
+                {/* <img src={`https://primereact.org/images/product/${data.image}`} alt={data.name} /> */}
+                <div className="product-detail">
+                    <div className="product-name">{data.name}</div>
+                    <div className="product-description">{data.openText}</div>
+                    <Rating value={data.rate} readOnly cancel={false}></Rating>
+                    <i className="pi pi-tag pi-calendar-times"></i><span className="product-category">  תאריך העלאה - {data.uploadDate}</span>
                 </div>
-                <div className="product-list-detail">
-                    <h5 className="mb-2">{item.name}</h5>
-                    <i className="pi pi-tag product-category-icon"></i>
-                    <span className="product-category">{item.openText}</span>
-                </div>
-                <div className="product-list-action">
-                    <h6 className="mb-2">${item.borrowsNum}</h6>
-                    <span className={`product-badge status-${item.status.toLowerCase()}`}>{item.status}</span>
+                <div className="product-action">
+                    <span className="product-price">מס' השאלות-{data.borrowsNum}</span>
+                    {/* <Button icon="pi pi-user" label="   מושאל?" disabled={data.status === 'false'}></Button><br/> */}
+                    <div className='product-description'>{data.status}</div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="orderlist-demo">
-            <div className="card">
-                <h1>Try</h1>
-                <OrderList value={products} header="List of Products" dragdrop listStyle={{height:'auto'}} dataKey="id"
-                    itemTemplate={itemTemplate} onChange={(e) => setProducts(e.value)}></OrderList>
-            </div>
+        <div className="card datascroller-demo">
+            <DataScroller value={products} itemTemplate={itemTemplate} rows={2} buffer={0.4} header="List of Products" />
         </div>
-    );
-    }
-    export default Card1
-                
+    )
+}export default CardTable;
+        

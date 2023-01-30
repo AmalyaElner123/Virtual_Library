@@ -7,13 +7,13 @@ import { FetchItems } from './FetchItems';
 const Users = () => {
     // const users = useSelector(state => state.users.users);
     // const loading = useSelector(state => state.users.loading);
-    const users= useSelector(state => state.items);
+    const users= useSelector(state => state.users);
     const loading = useSelector(state => state.loading)
     // console.log("loading:")
     // console.log(loading)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(FetchItems());
+        dispatch(FetchUsers());
     }, []);
     // useEffect(() => {
     //     if (users.length > 0) {

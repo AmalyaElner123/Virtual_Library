@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import '../App.css';
+//import '../App.css';
 import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Items from './Items';
@@ -18,6 +18,7 @@ import PrivateArea from './PrivateArea';
 import Carousle from './carousle/carousle';
 import Users from './Redux/Users'
 import PersonalDetails from './personalDetails';
+import Home from './Home'
 
 
 function MainPage() {
@@ -26,7 +27,7 @@ function MainPage() {
             <h1 >Welcome to Virtual Library web site</h1>
         <BrowserRouter>
          <nav className="link-nav">
-         <Link className='link' to="/"> משתמש רשום </Link>
+         <Link className='link' to="/"> דף הבית </Link>
          <Link className='link' to="/PrivateArea"> אזור אישי</Link>
          <Link className='link' to="/Register"> משתמש חדש </Link>
          <Link className='link' to="/AddItem"> הוספת מוצר </Link>
@@ -35,7 +36,7 @@ function MainPage() {
              
         <Routes>
         <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
-         <Route exact path="/" element={<PersonalDetails/>} ></Route>
+         <Route exact path="/" element={<Home/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
@@ -46,7 +47,7 @@ function MainPage() {
 
 <Carousle></Carousle>       
 {/* redux - try      */}
-    <Users></Users>
+    {/* <Users></Users> */}
    
  </div>
     );
