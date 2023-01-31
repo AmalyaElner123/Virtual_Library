@@ -18,7 +18,10 @@ axios.interceptors.request.use(req =>
     console.log(obj)   
     return axios.post(url,obj).then(res=>res.data);
 }
-
+const updateUser = (url,obj) =>
+{
+    return axios.put(url,obj).then(res=>res.data);
+}
 const createItem = (url,obj) =>
 {
     return axios.post(url,obj).then(res=>res.data);
@@ -52,4 +55,4 @@ const getAllUsers = (url) =>
     
 } 
 
-export default {getAllItems,createUser,getAllUsers,createItem};
+export default {getAllItems,createUser,getAllUsers,createItem,updateUser};

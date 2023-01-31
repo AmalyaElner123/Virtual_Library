@@ -102,7 +102,7 @@ exports.updateUser = function(id,obj)
             {
                 if(err)
                 {
-                    reject(err)
+                    reject("err")
                 }
                 else
                 {

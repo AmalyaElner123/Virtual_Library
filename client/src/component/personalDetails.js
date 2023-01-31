@@ -31,6 +31,8 @@ import { FetchUsers } from './Redux/FetchUsers';
 import { FetchItems } from './Redux/FetchItems';
 import { useLocation } from "react-router";
 import './login.css'
+import { Inplace, InplaceDisplay, InplaceContent } from 'primereact/inplace';
+
 
 function PersonalDetails() {
 const [email,setEmail]=useState();//email taht typed
@@ -42,6 +44,12 @@ const [f,setF]=useState();//משתמש- אובגקט
 const users= useSelector(state => state.users);
 const items= useSelector(state => state.items);
 const loading = useSelector(state => state.loading);
+const [email1,setEmail1]=useState();
+const [name,setName]=useState();
+const [phone,setPhone]=useState();
+const [address,setAddress]=useState();
+const [password,setPassword]=useState();
+
 
     // console.log("loading:")
     // console.log(loading)
@@ -74,7 +82,43 @@ const dispatch = useDispatch();
     }, []);
 
 
+const change = async()=>{
+    console.log("phone")
+    console.log(phone)
+    console.log("email1")
+    console.log(email1)
+    console.log("name")
+    console.log(name)
+    console.log(user[0]);
 
+    user[0].userPassword= password?password.password:user[0].userPassword;
+    user[0].userName= name?name.name:user[0].userName;
+    user[0].address= address?address.address:user[0].address;
+    user[0].phone= phone?phone.phone:user[0].phone;
+    user[0].email= email?email.email:user[0].email;
+    console.log(user[0]);
+    const res = await utils.updateUser(user[0]._id,user[0]) 
+    console.log(res);
+    // setUser(user.userName=data.name);
+    //      setItem(item.category=selectedCategory)
+    //      setItem(item.openText=data.openText)
+    //     //  setItem({...item, uploadDate:date1 });
+    //      //setItem({...item,data})
+        
+    //     console.log("item:")
+    //     console.log(item)
+    //     setItem(item.uploadDate=date1)
+    //     console.log("item__with_date:")
+    //     console.log(item)
+        
+
+        // var res = await utils.createItem("http://localhost:8000/api/items",item)
+
+
+        // console.log("add_new_item");
+        
+        // AddItem.resetForm();
+} 
 
 
     return (
@@ -83,44 +127,65 @@ const dispatch = useDispatch();
             <Grid container direction="row" p={0.5} rowSpacing={1} columnSpacing={{ xs: 1}}>
   <Grid item xs>
     <Itemim>
+        
            <div className="flex justify-content-center">
                 <div className="card">
+                    
                     <h5 className="text-center">עדכון פרטים אישיים</h5>
                         <div className="field">
                             <span className="p-float-label">
-                                <InputText id="userName" name="userName"  value={user[0]? user[0].userName: " "} onChange={setEmail}  />
-                                <label htmlFor="userName" >שם*</label>
+                            <Inplace>
+                            <InplaceDisplay>שם: {user[0]? user[0].userName: " "}</InplaceDisplay>
+                            <InplaceContent>שם: {user[0]? user[0].userName: " "}<br/>
+                                
+                                <InputText id="userName" name="userName" onChange={e => setName({...name, name : e.target.value})}  />
+                             </InplaceContent></Inplace>
                             </span>
                         </div>
                         <div className="field">
                             <span className="p-float-label">
-                                <InputText dir='ltr' id="userPassword" name="userPassword"  value={user[0]? user[0].userPassword:user[0].userPassword=""} onChange={setEmail} />
-                                <label htmlFor="userPassword">סיסמה*</label>
+                            <Inplace>
+                            <InplaceDisplay>סיסמא : {user[0]? user[0].password:" "}</InplaceDisplay>
+                            <InplaceContent>סיסמא : {user[0]? user[0].password:" "}<br/>
+                                
+                                <InputText id="userName" name="userName" onChange={e => setPassword({...password, password : e.target.value})}  />
+                             </InplaceContent></Inplace>
                             </span>
                         </div>
                         <div className="field">
-                            <span className="p-float-label p-input-icon-right">
-                                <i className="pi pi-envelope" />
-                                <InputText id="email" name="email"  value={user[0]? user[0].email:user[0].email=""} onChange={setEmail}  />
-                                <label htmlFor="email">Email*</label>
+                            <span className="p-float-label">
+                            <Inplace>
+                            <InplaceDisplay>כתובת  : {user[0]? user[0].address:" "}</InplaceDisplay>
+                            <InplaceContent>כתובת : {user[0]? user[0].address:" "}<br/>
+                                
+                                <InputText id="userName" name="userName" onChange={e => setAddress({...address, address : e.target.value})}  />
+                             </InplaceContent></Inplace>
+                            </span>
+                        </div>
+                        <div className="field">
+                            <span className="p-float-label">
+                            <Inplace>
+                            <InplaceDisplay>טלפון : {user[0]? user[0].phone:" "}</InplaceDisplay>
+                            <InplaceContent>טלפון : {user[0]? user[0].phone:" "}<br/>
+                                
+                                <InputText id="userName" name="userName" onChange={e => setPhone({...phone, phone : e.target.value})}  />
+                             </InplaceContent></Inplace>
+                            </span>
+                        </div>
+                        <div className="field">
+                            <span className="p-float-label">
+                            <Inplace>
+                            <InplaceDisplay>אימייל : {user[0]? user[0].email:" "}</InplaceDisplay>
+                            <InplaceContent>אימייל : {user[0]? user[0].email:" "}<br/>
+                                
+                                <InputText id="userName" name="userName" onChange={e => setEmail({...email, email : e.target.value})}  />
+                             </InplaceContent></Inplace>
                             </span>
                         </div>
                        
-                        <div className="field">
-                            <span className="p-float-label">
-                                <InputText id="address" name="address"  value={user[0]? user[0].address:user[0].address=""} onChange={setEmail}  />
-                                <label htmlFor="address">ערים</label>
-                            </span>
                         </div>
-                         <div className="field">
-                            <span className="p-float-label">
-                                <InputText id="phone" name="phone"  value={user[0]? user[0].phone:user[0].phone=""} onChange={setEmail}  />
-                                <label htmlFor="phone" >טלפון*</label>
-                            </span>
-                        </div>
-
-                        <Button type="submit" label="Submit" className="mt-2" />
-        </div>
+<br/>
+                        <Button type="submit" label="Submit" className="mt-2" onClick={change}/>
         </div>
         </Itemim>
         </Grid>
