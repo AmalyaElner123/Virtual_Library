@@ -7,7 +7,7 @@ function PersonalDetailRouter (){
    const navigate = useNavigate();
     const privatearea=()=>{
        const s = sessionStorage.getItem("token");
-       if(appData.token!="email or password incorect!"){
+       if(appData.token!="email or password incorect!"&&appData.token!=""){
        console.log("good email or password ")
 
 navigate("/personalDetails")

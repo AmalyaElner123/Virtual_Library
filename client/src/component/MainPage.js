@@ -9,7 +9,7 @@ import Register from './Add/Register';
 import AddItem from './Add/AddItemMain';
 // import AddItem from './AddItem1';
 // import AddItem from './Add/AddItemMUI';
-
+import utils from './service/utils'
 
 import ShowItems from './ShowItems/ItemsMain'
 import {RouterLink,Router} from '@mui/material';
@@ -20,11 +20,40 @@ import Users from './Redux/Users'
 import PersonalDetails from './personalDetails';
 import PersonalDetailRouter from './PersonalDetailRouter';
 import Home from './Home'
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch,useSelector } from "react-redux";
 
 function MainPage() {
+    const dispatch = useDispatch();
 
+    const getData=async()=>{
+        try {
+            console.log("dispatch")
+            console.log(dispatch)
+                const res = await utils.getAllItems("http://localhost:8000/api/items");
+                console.log("res_items:")
+                console.log(res)
+                dispatch({ type: 'FETCH_ITEMS', payload: res});
+            } catch (err) {
+                dispatch({ type: 'FETCH_ITEMS_ERROR', payload: err });
+            }
+            
+    try {
+        console.log("dispatch")
+        console.log(dispatch)
+          
+            const res = await utils.getAllUsers("http://localhost:8000/api/users");
+            console.log("res_users:")
+            console.log(res)
+            dispatch({ type: 'FETCH_USERS', payload: res});
+        } catch (err) {
+            dispatch({ type: 'FETCH_USERS_ERROR', payload: err });
+        }
+
+    }
+useEffect(()=>{getData();},[])
     
     return (
         <div className="link-nav">
