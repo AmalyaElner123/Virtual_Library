@@ -5,6 +5,9 @@ import utils from '../service/utils';
 export const FetchUsers = () => async (dispatch) => {
 
     try {
+        console.log("dispatch")
+        console.log(dispatch)
+          
             const res = await utils.getAllUsers("http://localhost:8000/api/users");
             console.log("res_users:")
             console.log(res)

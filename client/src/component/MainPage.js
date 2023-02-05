@@ -18,13 +18,18 @@ import PrivateArea from './PrivateArea';
 import Carousle from './carousle/carousle';
 import Users from './Redux/Users'
 import PersonalDetails from './personalDetails';
+import PersonalDetailRouter from './PersonalDetailRouter';
 import Home from './Home'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
+
+    
     return (
         <div className="link-nav">
             <h1 >Welcome to Virtual Library web site</h1>
+            {/* <PersonalDetailRouter></PersonalDetailRouter> */}
         <BrowserRouter>
          <nav className="link-nav">
          <Link className='link' to="/"> דף הבית </Link>
@@ -32,15 +37,18 @@ function MainPage() {
          <Link className='link' to="/Register"> משתמש חדש </Link>
          <Link className='link' to="/AddItem"> הוספת מוצר </Link>
          <Link className='link' to="/ShowItems"> רשימת מוצרים </Link>
+         <Link className='link' to="/PersonalDetailRouter"> אזור אישי </Link>
          </nav>
              
         <Routes>
-        <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
          <Route exact path="/" element={<Home/>} ></Route>
+
+        <Route exact path="/PrivateArea" element={<PrivateArea/>} ></Route>
          <Route exact path="/Register" element={<Register/>} ></Route>
          <Route exact path="/AddItem" element={<AddItem/>} ></Route>
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
          <Route exact path="/PersonalDetails" element={<PersonalDetails/>} ></Route>
+         <Route exact path="/PersonalDetailRouter" element={<PersonalDetailRouter/>} ></Route>
 
         </Routes>
         </BrowserRouter>

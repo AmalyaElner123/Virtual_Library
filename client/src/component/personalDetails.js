@@ -35,7 +35,8 @@ import { Inplace, InplaceDisplay, InplaceContent } from 'primereact/inplace';
 
 
 function PersonalDetails() {
-const [email,setEmail]=useState();//email taht typed
+const [email,setEmail]=useState("");//email taht typed
+const [loginpassword,setLoginpassword]=useState("");//email taht typed
 const [itemsListOwn,setItemsListOwn]=useState([]);//רשימת מוצרים בבעלותי
 const [itemsListBorrow,setItemsListBorrow]=useState([]);//רשימת מוצרים שהשאלתי
 //const [user,setUser]=useState([{userName:"aaa",email:"12",userPassword:"1234",address:"sdf",phone:"123456789"}]);//משתמש- אובגקט
@@ -54,21 +55,24 @@ const [password,setPassword]=useState();
     // console.log("loading:")
     // console.log(loading)
 const dispatch = useDispatch();
+const appData = useSelector(state=>state);
 
 
     useEffect(() => {
         console.log("email-sessionStorage")
     console.log(sessionStorage["userEmail"]);
-        dispatch(FetchUsers());
-        dispatch(FetchItems());
-        
-    const e =sessionStorage["userEmail"] ;
-    setEmail(e);
+    dispatch(FetchUsers());
+    dispatch(FetchItems());
+        console.log("appData")
+        console.log(appData)
+    setEmail(appData.userEmail);
+    setLoginpassword(appData.userPassword)
+    console.log(email)
     const u= users.
-    filter(function(p){if(p.email===e)
+    filter(function(p){if(p.email===appData.userEmail&&p.userPassword===appData.userPassword)
         {return p;}
     else
-        {console.log(p.userName)}})
+        {console.log(p.userName);}})
     setUser(u);
     console.log("user")
     console.log(user)
@@ -96,8 +100,10 @@ const change = async()=>{
     user[0].address= address?address.address:user[0].address;
     user[0].phone= phone?phone.phone:user[0].phone;
     user[0].email= email?email.email:user[0].email;
+    user[0].rating= 5;
     console.log(user[0]);
-    const res = await utils.updateUser(user[0]._id,user[0]) 
+    const res = await utils.updateUser("http://localhost:8000/api/users/"+user[0]._id,user[0]) 
+
     console.log(res);
     // setUser(user.userName=data.name);
     //      setItem(item.category=selectedCategory)

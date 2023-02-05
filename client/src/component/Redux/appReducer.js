@@ -1,8 +1,11 @@
 const initialState = {
     users: [],
     items:[],
+    userEmail:"",
+    userPassword:"",
     loading: true,
-    error: null
+    error: null,
+    token:''
 };
 export default function appReducer(state = initialState, action)
 {
@@ -31,6 +34,22 @@ export default function appReducer(state = initialState, action)
                     error: action.payload,
                     loading: false
                 };
+            case 'FETCH_LOGIN_USER' :
+                return{
+                    ...state, userEmail : action.payload
+
+                    
+                }
+                
+                case 'FETCH_LOGIN_PASSWORD' :
+                return{
+                    ...state, userPassword : action.payload
+
+                }
+                case 'FETCH_TOKEN':
+                    return{
+                        ...state,token:action.payload
+                    }
             default:
                 return state;
         }

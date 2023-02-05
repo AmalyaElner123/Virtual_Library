@@ -18,7 +18,7 @@ setProducts(data1.list);console.log("card- prime");  console.log(data1.list);con
         return (
             
             <div className="product-item">
-                {/* <img src={`https://primereact.org/images/product/${data.image}`} alt={data.name} /> */}
+                <img src={data.img} alt={data.name} />
                 <div className="product-detail">
                     <div className="product-name">{data.name}</div>
                     <div className="product-description">{data.openText}</div>

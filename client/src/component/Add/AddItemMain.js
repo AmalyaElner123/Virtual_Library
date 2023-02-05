@@ -27,6 +27,7 @@ import { FileUpload } from 'primereact/fileupload';
 import { ProgressBar } from 'primereact/progressbar';
 import { Tooltip } from 'primereact/tooltip';
 import axios from 'axios';
+import PersonalDetailRouter from '../PersonalDetailRouter';
 
 
 
@@ -52,9 +53,9 @@ export const AddItem= () => {
             if (!data.name) {
                 errors.name = 'חובה למלא שם.';
             }
-            if (!data.category) {
-                errors.category = 'חובה לבחור קטגוריה.';
-            }
+            // if (!data.category) {
+            //     errors.category = 'חובה לבחור קטגוריה.';
+            // }
              if (!data.openText) {
                 errors.openText = 'חובה למלא תאור.';
             }
@@ -118,6 +119,7 @@ export const AddItem= () => {
         <div className="form-demo">
             <div className="flex justify-content-center">
                 <div className="card" float="right">
+                    <PersonalDetailRouter/>
                     <h5 className="text-center">הוספת מוצר חדש</h5>
                     <form onSubmit={AddItem.handleSubmit} className="p-fluid">
                         <div className="field" >
