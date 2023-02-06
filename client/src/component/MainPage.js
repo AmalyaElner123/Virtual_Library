@@ -18,8 +18,8 @@ import PrivateArea from './PrivateArea';
 import Carousle from './carousle/carousle';
 import Users from './Redux/Users'
 import PersonalDetails from './personalDetails';
-import Home from './Home'
-
+// import Home from './Home'
+import Home from './HomePage'
 
 function MainPage() {
     return (

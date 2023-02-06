@@ -86,3 +86,41 @@ text-decoration:none;
     transform: rotate(360deg);
   }
 }
+
+.linksHome {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkHome {
+  font-size: 20px;
+  color: blue;
+  text-decoration: none;
+  background-color: lightblue;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 5px !important;
+}
+
+.linkHome:last-child {
+  margin-right: 0;
+}
+
+.linkHome:hover {
+  background-color: orange;
+}
+
+/* .linkHome {
+  font-size: 20px;
+  color: blue;
+  text-decoration: none;
+  background-color: lightblue;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.linkHome:hover {
+  background-color: orange;
+  
+} */
+

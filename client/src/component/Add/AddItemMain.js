@@ -52,9 +52,9 @@ export const AddItem= () => {
             if (!data.name) {
                 errors.name = 'חובה למלא שם.';
             }
-            if (!data.category) {
-                errors.category = 'חובה לבחור קטגוריה.';
-            }
+            // if (!data.category) {
+            //     errors.category = 'חובה לבחור קטגוריה.';
+            // }
              if (!data.openText) {
                 errors.openText = 'חובה למלא תאור.';
             }
