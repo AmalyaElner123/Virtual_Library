@@ -39,6 +39,7 @@
 // export default Login;
 import { useState } from 'react';
 import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 //import { useHistory } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
@@ -56,16 +57,26 @@ import './login.css'
 import { useNavigate } from 'react-router-dom';
 import PersonalDetails from './PrivateArea'
 import utils from './service/utils';
+import { FetchUser } from './Redux/FetchUser';
+import { FetchUsers } from './Redux/FetchUsers';
+
 
 function Login() {
-    const history =useNavigate();
+    const navigate =useNavigate();
 
     const [answer,setAnswer]=useState();
     const [email,setEmail]=useState();
     const [login, setLogin] = useState({email : '',userPassword : ''})
-    
+    const dispatch = useDispatch();
+    const appData = useSelector(state=>state);
+    const [message, setMessage] = useState("ברוכים הבאים");
+    const users= useSelector(state => state.users);
+    const userEmail= useSelector(state => state.userEmail);
+    const items= useSelector(state => state.items);
+    const [user,setUser]=useState([]);//משתמש- אובגקט
+
     //const history = useHistory()
-    const loginFunc = async() =>
+    const LoginFunc = async() =>
     {
         
         console.log("login:")
@@ -77,16 +88,38 @@ function Login() {
                 console.log("resp");
                 // console.log(resp.data.token);
                 console.log(resp.data)
+                dispatch({type:"FETCH_TOKEN",payload : resp.data})
                 authUtils.saveToken(resp.data.token);
                 //history.push("/products")
             })
             console.log("a")
             console.log(a.PromiseState)
+      
+            dispatch({type:"FETCH_LOGIN_USER",payload : login.email})
+            dispatch({type:"FETCH_LOGIN_PASSWORD",payload : login.userPassword})
+            
+            
+            console.log("redux");
+
+            console.log(appData.userEmail);
             setAnswer(a.PromiseState);
-            sessionStorage.setItem('userEmail',login.email)
-            if(sessionStorage["token"]){
-               
-            history("/personalDetails");
+            // sessionStorage.setItem('userEmail',login.email)
+            dispatch(FetchUsers());
+            const u= users.
+            filter(function(p){if(p.email===appData.userEmail&&p.userPassword===appData.userPassword)
+                {return p;}
+            else
+                {console.log(p.userName);}})
+            setUser(u);
+            console.log("user")
+            console.log(user)
+            const f=sessionStorage.getItem("token");
+            if(appData.token){
+                setMessage("זוהיתם בהצלחה");
+                navigate("/personalDetails");
+            }
+            else{
+               setMessage("מייל או סיסמא שגויים"                )
             }
 
    }
@@ -117,10 +150,10 @@ function Login() {
             סיסמה:<input type="text" onChange={e => setLogin({...login, userPassword : e.target.value}) } /><br/> */}
 
    
-            <Button   className="mt-2" value="Login" onClick={loginFunc} label="Login"></Button>
+            <Button   className="mt-2" value="Login" onClick={LoginFunc} label="Login"></Button>
         
 
-        <h5>  {answer}</h5>
+        <h5>  {message}</h5>
         </div>
         </div>
     );

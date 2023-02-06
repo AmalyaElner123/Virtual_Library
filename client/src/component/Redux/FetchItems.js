@@ -5,6 +5,8 @@ import utils from '../service/utils';
 export const FetchItems = () => async (dispatch) => {
 
     try {
+        console.log("dispatch")
+        console.log(dispatch)
             const res = await utils.getAllItems("http://localhost:8000/api/items");
             console.log("res_items:")
             console.log(res)

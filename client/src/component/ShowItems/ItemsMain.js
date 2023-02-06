@@ -30,11 +30,12 @@ import '@fontsource/roboto/700.css';
 import Buttons from '@mui/material/Button';
 import {Checkbox,Grid,TextField} from '@mui/material';
 import Itemim from "@mui/material/Grid"
+import {useSelector} from 'react-redux'
 //import SortService from './sortService';
 
 
 export const ItemsMain = () => {
-
+const appData=useSelector(state=>state);
     const [items, setItems] = useState([])
     //const [selectedProducts, setSelectedProducts] = useState([])
     const [itemsForSort, setitemsForSort] = useState([])
@@ -44,9 +45,9 @@ export const ItemsMain = () => {
     const [statusFilter,setStatusFilter]= useState(false);
     const getData = async()=>
         {
-        var  res1 = await utils.getAllItems("http://localhost:8000/api/items");
-        setItems(res1);
-        setitemsForSort(res1);
+        //var  res1 = await utils.getAllItems("http://localhost:8000/api/items");
+        setItems(appData.items);
+        setitemsForSort(appData.items);
         }
         useEffect( () =>  { getData();  } ,[])
 
