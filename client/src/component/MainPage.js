@@ -18,8 +18,13 @@ import PrivateArea from './PrivateArea';
 import Carousle from './carousle/carousle';
 import Users from './Redux/Users'
 import PersonalDetails from './personalDetails';
-import Home from './Home'
-
+import PersonalDetailRouter from './PersonalDetailRouter';
+// import Home from './Home'
+import Home from './HomePage'
+//import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch,useSelector } from "react-redux";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -86,4 +91,3 @@ useEffect(()=>{getData();},[])
     );
 }
 export default MainPage;
-
