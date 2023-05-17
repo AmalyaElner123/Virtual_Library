@@ -1,3 +1,8 @@
+//import for image saving
+import {storage} from './fireBase'
+import {listAll, ref,uploadBytes,getDownloadURL} from 'firebase/storage'
+import {v4} from 'uuid'
+
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
@@ -28,17 +33,20 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Tooltip } from 'primereact/tooltip';
 import axios from 'axios';
 import PersonalDetailRouter from '../PersonalDetailRouter';
+import Photo from './photo';
+import { useSelector } from 'react-redux';
 
 
 
 
 export const AddItem= () => {
-       
-      const [item, setItem] = useState([]);
+       const appData = useSelector(state=>state);
+      const [item, setItem] = useState([{name:"",openText:"",rate:0,idBorrow:"",idOwner:"",img:"",category:[""],uploadDate:"",status:""}]);
       const [selectedCategory, setselectedCategory] = useState(null);
     //   const  [item,setItem]=useState({name:'',category:'',openText:'',img:'',uploadDate:Date})
-
-         
+    
+    
+   
     const AddItem = useFormik({
         initialValues: {
             name: '',
@@ -68,9 +76,10 @@ export const AddItem= () => {
         var today = new Date,date1 = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
 
         //       setItem(data)
-         setItem(item.name=data.name);
-         setItem(item.category=selectedCategory)
+         setItem(...item,item.name=data.name);
+         //setItem(item.category=selectedCategory)
          setItem(item.openText=data.openText)
+         setItem(item.img=appData.url)
         //  setItem({...item, uploadDate:date1 });
          //setItem({...item,data})
         
@@ -79,6 +88,22 @@ export const AddItem= () => {
         setItem(item.uploadDate=date1)
         console.log("item__with_date:")
         console.log(item)
+        const user=appData.user
+        console.log("appData.user")
+        console.log(appData.user)
+
+        setItem(item.idOwner=appData.user[0]._id)
+        setItem(item.idBorrow="")
+        setItem(item.status="false")
+        setItem(item.rate=0)
+        console.log("item__with_date:")
+        console.log(item)
+
+        //         idOwner  : obj.idOwner ,
+        //         idBorrow : obj.idBorrow ,
+        //         status   : obj.status ,
+        //         rate     : obj.rate ,
+        //         borrowsNum : obj.borrowsNum ,
         
 
         var res = await utils.createItem("http://localhost:8000/api/items",item)
@@ -126,7 +151,7 @@ export const AddItem= () => {
                             <span className="p-float-label">
                             {/* <input type="text" onChange={e=>setItem({...item,name:e.target.value})}></input><br/>    */}
                              <InputText dir="r2l" id="name" name="name" value={AddItem.values.name}  onChange={AddItem.handleChange} autoFocus className={classNames({ 'p-invalid': isFormFieldValid('name') })} />
-                             <label middlehtmlFor="name" className={classNames({ 'p-error': isFormFieldValid('name') })}>שם*</label>
+                             <label htmlFor="name" className={classNames({ 'p-error': isFormFieldValid('name') })}>שם*</label>
                             </span>
                             {getFormErrorMessage('name')}
                         </div>
@@ -165,9 +190,12 @@ export const AddItem= () => {
                         
                          <div>
                          {/* <input type="file" onChange={onFileChange} /> */}
-                         <input type="file" label="Image" name="img" accept=".jpeg, .png, .jpg" onChange={(e) => handleFileUpload(e)}/>
+                         {/* <input type="file" onChange={(event)=>{setImageUpload(event.target.files[0])}}></input>
+                        <button onClick={uploadP} >upload</button> */}
+                         {/* <input type="file" label="Image" name="img" accept=".jpeg, .png, .jpg" onChange={(e) => handleFileUpload(e)}/> */}
                          {/* <button onClick={onFileUpload}> Upload!</button>
                          {fileData} */}
+                         <Photo></Photo>
                          </div> 
                         <Button type="submit" label="הוספה" className="mt-2" ></Button>
                         {/* <button >ADD ITEM</button> */}

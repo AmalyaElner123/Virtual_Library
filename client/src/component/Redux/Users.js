@@ -24,26 +24,7 @@ const Users = () => {
     // }, [users]);
     return (
         <div>
-        { loading ? <div>Loading...</div> : 
-            <table>
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>openText</th>
-                        <th>rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user._id}>
-                            <td>{user.name}</td>
-                            <td>{user.openText}</td>
-                            <td>{user.rating}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        }
+    
         </div>
     );
 }

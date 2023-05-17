@@ -13,10 +13,10 @@ import { classNames } from 'primereact/utils';
 import { getDialogActionsUtilityClass } from "@mui/material";
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import utils from'./service/utils'
-import Card1 from "./PrivateArea/card/card";
-import Cardd from './PrivateArea/card/card1'
+//import Card1 from "./PrivateArea/card/card";
+//import Cardd from './PrivateArea/card/card1'
 import CardTable from './PrivateArea/card/card'
-import Table1 from "./PrivateArea/table";
+//import Table1 from "./PrivateArea/table";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -59,29 +59,29 @@ const appData = useSelector(state=>state);
 
 
     useEffect(() => {
-        console.log("email-sessionStorage")
+    console.log("email-sessionStorage")
     console.log(sessionStorage["userEmail"]);
-    dispatch(FetchUsers());
-    dispatch(FetchItems());
-        console.log("appData")
-        console.log(appData)
+    // dispatch(FetchUsers());
+    // dispatch(FetchItems());
+    console.log("appData")
+    console.log(appData)
     setEmail(appData.userEmail);
     setLoginpassword(appData.userPassword)
     console.log(email)
-    const u= users.
-    filter(function(p){if(p.email===appData.userEmail&&p.userPassword===appData.userPassword)
-        {return p;}
-    else
-        {console.log(p.userName);}})
-    setUser(u);
+    // const u= users.
+    // filter(function(p){if(p.email===appData.userEmail&&p.userPassword===appData.userPassword)
+    //     {return p;}
+    // else
+    //     {console.log(p.userName);}})
+    setUser(appData.user);
     console.log("user")
     console.log(user)
        const i= items.
-       filter(function(p){if(p.idOwner===u[0]._id){if(p)return p;}else{console.log(p.idOwner)}})
+       filter(function(p){if(p.idOwner===appData.user[0]._id){if(p)return p;}else{console.log(p.idOwner)}})
        setItemsListOwn(i);
 
        const it= items.
-       filter(function(p){if(p.idBorrow===u[0]._id){return p;}else{console.log(p.idBorrow)}})
+       filter(function(p){if(p.idBorrow===appData.user[0]._id){return p;}else{console.log(p.idBorrow)}})
        setItemsListBorrow(it);
     }, []);
 

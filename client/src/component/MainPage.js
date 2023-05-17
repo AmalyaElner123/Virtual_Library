@@ -25,37 +25,10 @@ import Home from './HomePage'
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useDispatch,useSelector } from "react-redux";
+import Photo from './Add/photo'
 
 function MainPage() {
-    const dispatch = useDispatch();
 
-    const getData=async()=>{
-        try {
-            console.log("dispatch")
-            console.log(dispatch)
-                const res = await utils.getAllItems("http://localhost:8000/api/items");
-                console.log("res_items:")
-                console.log(res)
-                dispatch({ type: 'FETCH_ITEMS', payload: res});
-            } catch (err) {
-                dispatch({ type: 'FETCH_ITEMS_ERROR', payload: err });
-            }
-            
-    try {
-        console.log("dispatch")
-        console.log(dispatch)
-          
-            const res = await utils.getAllUsers("http://localhost:8000/api/users");
-            console.log("res_users:")
-            console.log(res)
-            dispatch({ type: 'FETCH_USERS', payload: res});
-        } catch (err) {
-            dispatch({ type: 'FETCH_USERS_ERROR', payload: err });
-        }
-
-    }
-useEffect(()=>{getData();},[])
-    
     return (
         <div className="link-nav">
             <h1 >Welcome to Virtual Library web site</h1>
@@ -68,6 +41,7 @@ useEffect(()=>{getData();},[])
          <Link className='link' to="/AddItem"> הוספת מוצר </Link>
          <Link className='link' to="/ShowItems"> רשימת מוצרים </Link>
          <Link className='link' to="/PersonalDetailRouter"> אזור אישי </Link>
+         <Link className='link' to="/Photo"> העלאת תמונות </Link>
          </nav>
              
         <Routes>
@@ -79,13 +53,14 @@ useEffect(()=>{getData();},[])
          <Route exact path="/ShowItems" element={<ShowItems/>} ></Route>
          <Route exact path="/PersonalDetails" element={<PersonalDetails/>} ></Route>
          <Route exact path="/PersonalDetailRouter" element={<PersonalDetailRouter/>} ></Route>
+         <Route exact path="/Photo" element={<Photo/>} ></Route>
 
         </Routes>
         </BrowserRouter>
 
 <Carousle></Carousle>       
-{/* redux - try      */}
-    {/* <Users></Users> */}
+
+ <Users></Users>
    
  </div>
     );

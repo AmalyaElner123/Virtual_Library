@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 import React, { useState, useEffect } from 'react';
 import { OrderList } from 'primereact/orderlist';
-import './OrderListDemo.css';
+//import './OrderListDemo.css';
 
 
 function Table1() {

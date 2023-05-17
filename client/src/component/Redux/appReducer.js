@@ -5,7 +5,9 @@ const initialState = {
     userPassword:"",
     loading: true,
     error: null,
-    token:''
+    token:'',
+    user:[],
+    url:""
 };
 export default function appReducer(state = initialState, action)
 {
@@ -50,6 +52,14 @@ export default function appReducer(state = initialState, action)
                     return{
                         ...state,token:action.payload
                     }
+                case 'FETCH_USER':
+                    return{
+                            ...state,user:action.payload
+                    }
+                    case 'FETCH_URL':
+                        return{
+                                ...state,url:action.payload
+                        }
             default:
                 return state;
         }

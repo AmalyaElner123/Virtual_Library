@@ -1,42 +1,3 @@
-// import { useState } from 'react';
-// //import { useHistory } from 'react-router-dom';
-// import authUtils from './authSrv';
-
-// function Login() {
-        
-//     const [answer,setAnswer]=useState();
-//     const [login, setLogin] = useState({email : '',userPassword : ''})
-//     //const history = useHistory()
-//     const loginFunc = () =>
-//     {
-        
-//         console.log("login:")
-//         console.log(login.email)
-//         console.log(login.userPassword)
-//        const a= authUtils.login(login.email, login.userPassword)
-//          .then(resp =>
-//             {
-//                 console.log("resp");
-//                 // console.log(resp.data.token);
-//                 console.log(resp.data)
-//                 authUtils.saveToken(resp.data.token);
-//                 //history.push("/products")
-//             })
-//             console.log("a")
-//             console.log(a.PromiseState)
-//             setAnswer(a.PromiseState);
-//    }
-//     return (
-//         <div className="App">
-//             <h3>התחברות</h3>
-//             אימייל:<input type="text" onChange={e => setLogin({...login, email: e.target.value}) } /><br/>
-//             סיסמה:<input type="text" onChange={e => setLogin({...login, userPassword : e.target.value}) } /><br/>
-//             <input type="button" value="Login" onClick={loginFunc} />
-//             {answer}
-//         </div>
-//     );
-// }
-// export default Login;
 import { useState } from 'react';
 import { BrowserRouter ,Link,Route, Routes } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -59,6 +20,7 @@ import PersonalDetails from './PrivateArea'
 import utils from './service/utils';
 import { FetchUser } from './Redux/FetchUser';
 import { FetchUsers } from './Redux/FetchUsers';
+import { FetchItems } from './Redux/FetchItems';
 
 
 function Login() {
@@ -82,7 +44,7 @@ function Login() {
         console.log("login:")
         console.log(login.email)
         console.log(login.userPassword)
-       const a= authUtils.login(login.email, login.userPassword)
+        const a= authUtils.login(login.email, login.userPassword)
          .then(resp =>
             {
                 console.log("resp");
@@ -97,23 +59,21 @@ function Login() {
       
             dispatch({type:"FETCH_LOGIN_USER",payload : login.email})
             dispatch({type:"FETCH_LOGIN_PASSWORD",payload : login.userPassword})
-            
-            
             console.log("redux");
-
             console.log(appData.userEmail);
-            setAnswer(a.PromiseState);
             // sessionStorage.setItem('userEmail',login.email)
             dispatch(FetchUsers());
+            dispatch(FetchItems());
             const u= users.
             filter(function(p){if(p.email===appData.userEmail&&p.userPassword===appData.userPassword)
                 {return p;}
             else
                 {console.log(p.userName);}})
             setUser(u);
+            dispatch({type:"FETCH_USER",payload : u})
+
             console.log("user")
             console.log(user)
-            const f=sessionStorage.getItem("token");
             if(appData.token){
                 setMessage("זוהיתם בהצלחה");
                 navigate("/personalDetails");
