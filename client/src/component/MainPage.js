@@ -30,8 +30,8 @@ import Photo from './Add/photo'
 function MainPage() {
 
     return (
-        <div className="link-nav">
-            <h1 >Welcome to Virtual Library web site</h1>
+        <div className='itemsMain'>
+            <h1 >מערכת השאלות חברתית</h1>
             {/* <PersonalDetailRouter></PersonalDetailRouter> */}
         <BrowserRouter>
          <nav className="link-nav">

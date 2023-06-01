@@ -1,4 +1,4 @@
-.App {
+ .App {
   text-align: center;
 }
 
@@ -40,8 +40,9 @@
 
 .itemsMain{
   text-align: center;
+  width: 100%;
   direction: rtl;
-  position: relative;
+  /* position: relative; */
 }
 
 .css-tctv7l{
@@ -56,7 +57,13 @@
 {
   background-color: orange;
 width: 100%;
-height: 50px;;
+height: 50px;
+text-align: center;
+/* padding-left: 20%;
+padding-right: 20%; */
+display: flex;
+
+
 }
 .link{
   background-color: orange;
@@ -64,7 +71,7 @@ height: 50px;;
   border-style:inherit;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top:  12.5px;;
+padding-top:  12.5px;;
   padding-bottom: 12.5px;
   margin-left: auto;
   margin-right: auto;
@@ -110,7 +117,7 @@ text-decoration:none;
   background-color: orange;
 }
 
-/* .linkHome {
+.linkHome {
   font-size: 20px;
   color: blue;
   text-decoration: none;
@@ -122,5 +129,5 @@ text-decoration:none;
 .linkHome:hover {
   background-color: orange;
   
-} */
-
+}
+ 

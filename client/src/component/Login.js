@@ -87,7 +87,7 @@ function Login() {
         <div className="flex justify-content-center">
             <div>
             <div className="card">
-                    <h5 className="text-center">משתמש חדש</h5>
+                    <h5 className="text-center">משתמש קיים</h5>
                     <form className="p-fluid">
                           <div className="field">
                             <span className="p-float-label p-input-icon-right">

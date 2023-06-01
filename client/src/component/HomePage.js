@@ -1,9 +1,18 @@
 import React from 'react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Grid from '@mui/material/Grid';
+import Itemim from '@mui/material/Grid';
 
 function HomePage() {
   return (
     <div>
-      <div style={{ display: 'flex'}}>
+      <Grid container direction="column" rowSpacing={1} columnSpacing={{ xs: 1}}> 
+      
+        <Grid item xs>
+          <Itemim>
       <div>
           <p>שכור כאן את כלי העבודה שאתה צריך
 מגוון ענק של כלים, ציוד לבנייה ובניין להשכרה יומית לפי הצורך
@@ -12,12 +21,15 @@ function HomePage() {
 מערבל בטון, מכשיר לחיתוך קרמיקה, פטישון מקדחה ומברגות לקידוח והברגה
 ניתן למצוא גם סולמות להשכרה, ציוד לעבודה בגובה, משאבות מים, מד טווח לייזר להשכרה וכלים נוספים
 </p>
-        </div>
+        </div></Itemim>
+        </Grid>
+        <Grid item xs>
+          <Itemim>
         <div>
           <img src={"https://images.wcdn.co.il/f_auto,q_auto,w_1400,t_54/9/1/3/4/913489-46.jpg"} alt="site picture" style={{width: '500px', height: '350px'}} />
-        </div>
-        
-      </div>
+        </div></Itemim>
+       </Grid>
+      </Grid>
       
       <div className="linksHome">
         <a href="/ShowItems" className="linkHome">לרשימת המוצרים</a>
